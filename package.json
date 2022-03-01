@@ -1,0 +1,23 @@
+{
+  "name": "virdom",
+  "version": "1.0.1",
+  "description": "a html parser",
+  "main": "main.js",
+  "scripts": {
+    "check": "npm search virdom"
+  },
+  "keywords": [],
+  "author": "virdom",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nightcode-dev/vdom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nightcode-dev/vdom/issues"
+  },
+  "homepage": "https://github.com/nightcode-dev/vdom#readme",
+  "dependencies": {
+    "virdom": "^1.0.0"
+  }
+}
