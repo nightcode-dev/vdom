@@ -421,6 +421,28 @@ class Html {
       var elem = new elc(el)
       return elem;
    }
+   createElement(tgname){
+      var elem = [{
+         type: 'open',
+         name: tgname,
+         tag: { openTagIndex: 0, closeTagIndex:tgname.length+1 , tag: `<${tgname} >` },
+      }]
+      var el = new elc(elem)
+      return el;
+      
+   }
+   appendTo(to,el){
+      var toeli = this.dom.indexOf(to._dom)
+      if(toeli != -1){
+       el.dom.line = to.dom.line
+        var closetg = JSON.parse(JSON.stringify(el.dom))
+        closetg.type = 'close'
+        this.dom.push(el.dom)
+        this.dom.push(closetg)
+      }else{
+         throw new Error('this element there isnt in the document you have to append it')
+      }
+   }
 }
 
 module.exports = Html
