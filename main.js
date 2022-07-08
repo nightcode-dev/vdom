@@ -1,10 +1,11 @@
 var fs = require('fs')
 var Line = require('./line.js')
+var elc = require("./element.js")
 class Html {
    constructor(path){
       this.dom = [];
       this.path = path;
-      this.html = '';
+      this._html = '';
       this.rs;
       
    }
@@ -253,7 +254,7 @@ class Html {
    }
    
    
-   build(){
+   get html(){
       
       var vdom = this.dom
       var html = [];
@@ -360,8 +361,13 @@ class Html {
                }
             }
          }
-         this.html = htm
-         return this.html
+         this._html = htm
+         return this._html
+   }
+         
+   updateElement(elc){
+      var eli = this.dom.indexOf(elc._dom)
+      this.dom[eli] = elc.dom
    }
          
    listening(type,id,func){
@@ -408,7 +414,13 @@ class Html {
          
       }
    }
-   
+   select(id){
+      var el = this.dom.filter((tag)=>{
+         return tag.id == id;
+      })
+      var elem = new elc(el)
+      return elem;
+   }
 }
 
 module.exports = Html
