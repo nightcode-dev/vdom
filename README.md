@@ -1,3 +1,4 @@
+
 # virdom 
 welcome to virdom npm page(or github repository)
 ## what's virdom?
@@ -121,6 +122,96 @@ so our output is:
   </html> 
   <script >function hi(){   console.log('hi')}
   </script>
+```
+## whats new in version2?
+in new version of virdom you can select a element and work with it **how??** there is  a method in virdom module its name is `select()` and it gets id of element then select it and give you a class(tool) for work with it , and you can get the html code with `html` property (the virdom module had this property too it mean if you want to get html code of dom you can use this property) 
+so lets test it
+its our js code:
+```
+var virdom = require ('virdom')
+var file = new virdom('./example.html')
+file.render()
+var el = file.select('text')
+console.log(el.html)
+```
+and its our html code
+```
+<html >
+   <body >
+      <h1 id='text' >hi world</h1>     
+   </body>
+</html>
+```
+so the output is:
+```
+<h1 id='text' >hi world</h1>
+```
+but its not all of virdom tools you can change the inner of element with `inner` 
+property its a setter, lets test it
+our js code will change to this:
+```
+var virdom = require ('virdom')
+var file = new virdom('./example.html')
+file.render()
+var el = file.select('text')
+el.inner = 'virdom power'
+console.log(el.html)
+```
+and our html code dont need to change so the output is :
+```
+<h1 id='text' >virdom power</h1>
+```
+if you want to set or change the attribute you can use `setAttribute` method it get the name of attribute and the value of this and change this , do you want to test it ? Lets test it
+we change our js code to this:
+```
+var virdom = require ('virdom')
+var file = new virdom('./example.html')
+file.render()
+var el = file.select('text')
+el.setAttribute('class','green')
+console.log(el.html)
+```
+and html code dont need to change so the output will be:
+```
+<h1 id='text' class='green'>hi world</h1>
+```
+you change your element okey? Yes there is no problem but if you want to add it in your virdom object you should to use `updateElement()` method and you have to give it the selected element class it will make your change in html code 
+so lets finish our change in element
+```
+var virdom = require ('virdom')
+var file = new virdom('./example.html')
+file.render()
+var el = file.select('text')
+el.setAttribute('class','green')
+file.updateElement(el)
+console.log(file.html)
+```
+so output will be:
+```
+<html >
+   <body >      
+      <h1 id='text' class='green'>hi world</h1>        
+    </body>
+</html>
+```
+its about element changing and element selecting but its not end of virdom news in new version of virdom you can create an element with `createElement()`  method it give a tag name and create element class 
+and you can append it to code lets test them 
+for example we want to add h1 tag beside a last h1 tag so we change code to this :
+```
+var virdom = require ('virdom')
+var file = new virdom('./example.html')
+file.render()
+var el = file.select('text')
+var el2 = file.createElement('h1')
+file.appendTo(el,el2)
+```
+and the output will be : 
+```
+<html >
+   <body >            
+     <h1 id='text' >hi world</h1><h1></h1>            
+   </body>
+</html>
 ```
 ## bugs 
 >my module has some bugs besides it's features and if you want yo work with this module you have to use this rules in your code to dont get an error
